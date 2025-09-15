@@ -1,11 +1,17 @@
 🚀 Kafka 3.9.1 + Spring Boot Setup Guide
+# 🚀 Kafka 3.9.1 + Spring Boot Setup Guide
 
-1️⃣ Download and Extract Kafka
-Download Kafka 3.9.1 (Scala 2.13): kafka_2.13-3.9.1.tgz (asc, sha512)
-Extract the file to a custom path, e.g., C:\kafka_3.9.1
-Navigate to the extracted folder:
+---
+
+## 1️⃣ Download and Extract Kafka
+- Download Kafka 3.9.1 (Scala 2.13)
+  
+- : [kafka_2.13-3.9.1.tgz (asc, sha512)](https://downloads.apache.org/kafka/3.9.1/kafka_2.13-3.9.1.tgz)
+  
+- Extract the file to a folder, e.g., `C:\kafka_3.9.1`
+  
+- Open terminal and navigate to the folder:  
 cd kafka_2.13-3.9.1
-
 
 2️⃣ Environment Setup
 Java JDK: Install Java 8 or higher.
@@ -15,12 +21,16 @@ PATH=%JAVA_HOME%\bin;%PATH%
 Update PATH: Add Kafka bin\windows directory to PATH for easy command access.
 
 3️⃣ Configure Zookeeper
-Edit config/zookeeper.properties:
+
+Open config/zookeeper.properties and set:
+
 dataDir=C:/kafka_3.9.1/temp/zookeeper
 clientPort=2181
 
 4️⃣ Configure Kafka Broker
-Edit config/server.properties:
+
+Open config/server.properties and set:
+
 broker.id=0
 log.dirs=C:/kafka_3.9.1/temp/kafka-logs
 zookeeper.connect=localhost:2181
@@ -35,23 +45,42 @@ auto.create.topics.enable=true
 .\bin\windows\kafka-server-start.bat .\config\server.properties
 
 7️⃣ Create a Topic
-.\bin\windows\kafka-topics.bat --create --topic CodeDecodeTopic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 
-List topics:
+
+Create topic:
+
+.\bin\windows\kafka-topics.bat --create --topic CodeDecodeTopic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+
+List topics to verify:
+
 .\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
 
 8️⃣ Test Kafka in CMD
-Producer:
-Run this command another cmd
+
+Producer: Open a new CMD and run:
+
 .\bin\windows\kafka-console-producer.bat --topic CodeDecodeTopic --bootstrap-server localhost:9092
 
-Type your message (e.g., HelloKafka) → press Enter
-Consumer:
+
+Type a message (e.g., HelloKafka) → press Enter
+
+Consumer: Open another CMD and run:
+
 .\bin\windows\kafka-console-consumer.bat --topic CodeDecodeTopic --from-beginning --bootstrap-server localhost:9092
+
+
 You will see HelloKafka printed
 
+9️⃣ Test With Spring Boot
 
-🔟 Test With Spring Boot
 Run Spring Boot app:
+
 mvn spring-boot:run
+
+
 Open browser or Postman:
+
 GET http://localhost:8080/rest/api/producer?message=HelloKafka
+
+
+Check the Spring Boot console → your message appears
