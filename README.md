@@ -1,4 +1,5 @@
 🚀 Kafka 3.9.1 + Spring Boot Setup Guide
+
 1️⃣ Download and Extract Kafka
 Download Kafka 3.9.1 (Scala 2.13): kafka_2.13-3.9.1.tgz (asc, sha512)
 Extract the file to a custom path, e.g., C:\kafka_3.9.1
