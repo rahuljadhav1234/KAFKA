@@ -25,6 +25,7 @@ Update PATH: Add Kafka bin\windows directory to PATH for easy command access.
 Open config/zookeeper.properties and set:
 
 dataDir=C:/kafka_3.9.1/temp/zookeeper
+
 clientPort=2181
 
 4️⃣ Configure Kafka Broker
@@ -32,7 +33,9 @@ clientPort=2181
 Open config/server.properties and set:
 
 broker.id=0
+
 log.dirs=C:/kafka_3.9.1/temp/kafka-logs
+
 zookeeper.connect=localhost:2181
 listeners=PLAINTEXT://localhost:9092
 num.partitions=1
